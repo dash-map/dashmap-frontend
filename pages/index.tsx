@@ -1,19 +1,19 @@
 import type { NextPage } from 'next'
 import styled from "styled-components";
-import { Back } from '../assets';
 
 const Home: NextPage = () => {
   return (
-    <Wrapper></Wrapper>    
+    <Wrapper>
+      
+    </Wrapper>    
   )
 }
 
 const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
-  background-image: url('${Back}');
-  background-size: contain;
-  background-repeat: no-repeat;
+  background-image: url('https://dash-map.s3.ap-northeast-2.amazonaws.com/frontend/background.png');
+  background-size: 100% 100vh;
 `
 
-export default Home
+export default Home;
