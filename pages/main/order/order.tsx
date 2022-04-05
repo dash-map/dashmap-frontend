@@ -36,6 +36,12 @@ const Wrapper = styled.div`
 
 
     .left{
+        display: flex;
+        flex-direction: column;
+
+        & p{
+            margin-bottom: 10px;
+        }
         .title{
             color: #B4B4B4;
             font-weight: bold;

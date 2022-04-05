@@ -4,17 +4,21 @@ import Header from "./header";
 import Order from "./order/order";
 import Card from "./card/card";
 import Status from "./status/status";
+import { GlobalStyle } from "../../styles/globalStyle";
 
 const Main: NextPage = () => {
     return(
-        <Wrapper>
-            <Header />
-            <div className="main">
-                <Order />
-                <Card />
-                <Status />
-            </div>
-        </Wrapper>
+        <>
+            <GlobalStyle />
+            <Wrapper>
+                <Header />
+                <div className="main">
+                    <Order />
+                    <Card />
+                    <Status />
+                </div>
+            </Wrapper>
+        </>
     )
 }
 

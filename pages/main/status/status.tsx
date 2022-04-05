@@ -1,19 +1,65 @@
-import styled from "styled-components"
+import { useState } from "react";
+import styled from "styled-components";
+
+interface Props{
+    progress: number;
+}
 
 const Status = () => {
-    return(
-        <Wrapper>
 
-        </Wrapper>
+    const [pro, setPro] = useState<Props>({
+        progress: 38,
+    });
+
+    return(
+        <Container>
+            <Wrapper>
+                <StatusBar>
+                    <div style={{width: `${pro.progress}%`, height: "25px", }} className="progress"></div>
+                </StatusBar>
+            </Wrapper>
+            <p>{pro.progress}%</p>
+        </Container>
     )
 }
 
+const Container = styled.div`
+    width: 50%;
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+    justify-content: space-between;
+
+    & p{
+        margin: 0;
+        font-size: 20px;
+        color: #FFA900;
+        font-weight: bold;
+    }
+`
+
 const Wrapper = styled.div`
-    width: 45%;
+    width: 90%;
     height: 35px;
     border: 1px solid #949494;
     border-radius: 20px;
-    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `
+
+const StatusBar = styled.div`
+    width: 92%;
+    height: 25px;
+    background: #D8EEFF;
+    border-radius: 20px;
+
+    .progress{
+        background: #FF7C6A;
+        border-radius: 20px;
+    }
+`
+
+
 
 export default Status;

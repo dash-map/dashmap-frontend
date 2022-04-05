@@ -38,10 +38,6 @@ const Wrapper = styled.div`
     flex-direction: column;
     justify-content: space-around;
 
-    & p{
-        margin: 0;
-    }
-
     .cheer{
         font-size: 25px;
         color: #D3D3D3;
