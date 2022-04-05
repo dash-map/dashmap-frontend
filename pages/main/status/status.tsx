@@ -28,7 +28,7 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     margin-top: 30px;
-    justify-content: space-between;
+    justify-content: space-around;
 
     & p{
         margin: 0;
