@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Header from "./header";
 import Order from "./order/order";
 import Card from "./card/card";
+import Question from "./question/qustion";
 import Status from "./status/status";
 import { GlobalStyle } from "../../styles/globalStyle";
 
@@ -14,7 +15,7 @@ const Main: NextPage = () => {
                 <Header />
                 <div className="main">
                     <Order />
-                    <Card />
+                    <Question />
                     <Status />
                 </div>
             </Wrapper>
