@@ -12,7 +12,6 @@ const Question = () => {
             <div className="bottom">
                 <button>다음 퀘스트</button>
             </div>
-            <div></div>
         </Wrapper>
     )
 }
