@@ -1,6 +1,36 @@
-import styled from "styled-components"
+import { useState } from "react";
+import styled from "styled-components";
+
+interface Props {
+    name: string;
+    email: string;
+    level: number;
+    done: {
+        fe: boolean;
+        be: boolean;
+        aos: boolean;
+        ios: boolean;
+        ai: boolean;
+    }
+};
 
 const RankBox = () => {
+
+    const [state, setState] = useState<Props>({
+        name: "손윤석",
+        email: "thsdbstjr@gmail.com",
+        level: 523,
+        done: {
+            fe: true,
+            be: false,
+            aos: false,
+            ios: false,
+            ai: false,
+        }
+    });
+
+    const {name, email, level, done} = state;
+
     return(
         <Wrapper>
             <div className="user">
@@ -8,28 +38,40 @@ const RankBox = () => {
                     <img src="https://dash-map.s3.ap-northeast-2.amazonaws.com/frontend/laptop.png" alt="" />
                 </div>
                 <div className="right">
-                    <p className="name">손윤석</p>
-                    <p className="email">thsdbstjr@gmail.com</p>
+                    <p className="name">{name}</p>
+                    <p className="email">{email}</p>
                 </div>
             </div>
-
+            <div className="level">
+                <p>lv. {level}</p>
+            </div>
+            <div className="crown">
+                
+            </div>
         </Wrapper>
     )
 }
 
 const Wrapper = styled.div`
     width: 60%;
-
+    border: 1px solid #C4C4C4;
+    height: 70px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px #BDBDBD;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     p {
         margin: 0;
     }
 
     .user{
+        margin-left: 10px;
         align-items: center;
 
         .back{
-            width: 70px;
-            height: 70px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             background: linear-gradient(#FFD074, #F9A296);
             display: flex;
@@ -38,11 +80,21 @@ const Wrapper = styled.div`
             margin-right: 15px;
         }
         & img{
-            width: 50px;
-            height: 50px;
+            width: 35px;
+            height: 35px;
         }
         display: flex;
 
+        .right{
+            .name{
+                color: #F27A6A;
+                font-size: 18px;
+            }
+            .email{
+                color: #B1B1B1;
+                font-size: 14px;
+            }
+        }
     }
 `
 
