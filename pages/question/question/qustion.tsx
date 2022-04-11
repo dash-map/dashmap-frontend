@@ -32,7 +32,7 @@ const Wrapper = styled.div`
         margin: 20px;
     }
 
-    .middle{
+    .middle{   
         margin-left: 10%;
         margin-top: -80px;
         .question{
