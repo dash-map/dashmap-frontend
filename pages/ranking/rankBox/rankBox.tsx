@@ -1,5 +1,7 @@
 import { useState } from "react";
+import FieldBox from "./fieldBox/filedBox";
 import styled from "styled-components";
+
 
 interface Props {
     name: string;
@@ -46,21 +48,26 @@ const RankBox = () => {
                 <p>lv. {level}</p>
             </div>
             <div className="crown">
-                
+                <FieldBox field={"FE"} done={false} />
+                <FieldBox field={"BE"} done={true} />
+                <FieldBox field={"AOS"} done={true} />
+                <FieldBox field={"iOS"} done={false} />
+                <FieldBox field={"AI"} done={false} />
             </div>
         </Wrapper>
     )
 }
 
 const Wrapper = styled.div`
-    width: 60%;
-    border: 1px solid #C4C4C4;
+    width: 100%;
+    border: 1px solid #e5e5e5;
     height: 70px;
     border-radius: 10px;
     box-shadow: 3px 3px 10px #BDBDBD;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-top: 30px;
     p {
         margin: 0;
     }
@@ -95,6 +102,16 @@ const Wrapper = styled.div`
                 font-size: 14px;
             }
         }
+    }
+
+    .level{
+        color: #F27A6A;
+    }
+
+    .crown{
+        display: flex;
+        gap: 20px;
+        padding-right: 20px;
     }
 `
 
