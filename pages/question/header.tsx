@@ -27,7 +27,7 @@ const Wrapper = styled.div`
 
     .left{
         & img{
-            width: 30px;
+            width: 25px;
             margin-left: 20px;
         }
     }
