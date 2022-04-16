@@ -1,13 +1,14 @@
 import styled from "styled-components";
 import RankBox from "./rankBox/rankBox";
 import Header from "../question/header";
+import { COLOR } from "../../styles/color";
 
 const Rank = () => {
     return(
         <>
             <Header />
             <Wrapper>
-                <p>랭킹</p>
+                <p className="title">전체 랭킹</p>
                 <div className="rank">
                     <RankBox />
                     <RankBox />
@@ -27,7 +28,14 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    .title{
+        width: 60%;
+        font-size: 20px;
+        margin-bottom: 0;
+        color: ${COLOR.second};
+    }
     .rank{
+
         width: 60%;
         display: flex;
         align-items: center;
