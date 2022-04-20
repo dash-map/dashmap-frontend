@@ -29,6 +29,7 @@ const Wrapper = styled.div`
     }
     & img{
         width: 55px;
+        cursor: pointer;
     }
 `
 

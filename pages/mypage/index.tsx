@@ -9,14 +9,18 @@ const MyPage = () => {
             <Header />
             <Wrapper>
                 <User />
-                <Level />
+                <Level level={20} medal={10} />
             </Wrapper>
         </>
     )
 }
 
 const Wrapper = styled.div`
-
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 60px;
 `
 
 export default MyPage;
