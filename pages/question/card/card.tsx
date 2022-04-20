@@ -3,22 +3,19 @@ import styled from "styled-components";
 import { COLOR } from "../../../styles/color";
 
 interface Props{
-    cheer: string;
     quest: string;
 }
 
 const Card = () => {
 
     const [state, setState] = useState<Props>({
-        cheer: "힘내세요~",
         quest: "HTTP"
     });
 
-    const {cheer, quest} = state;
+    const { quest} = state;
 
     return(
         <Wrapper>
-            <p className="cheer">{cheer}</p>
             <p className="quest">{quest}</p>
             <div className="solve">
                 <button>문제풀기</button>
@@ -38,14 +35,10 @@ const Wrapper = styled.div`
     flex-direction: column;
     justify-content: space-around;
 
-    .cheer{
-        font-size: 25px;
-        color: #D3D3D3;
-    }
-
     .quest{
         font-size: 90px;
         color: #ABABAB;
+        margin-top: 70px;
     }
 
     .solve{
