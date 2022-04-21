@@ -11,11 +11,15 @@ const User = () => {
                 <p className="userName">손윤석</p>
                 <p className="email">thsdbstjr@gmail.com</p>
                 <ul>
-                    <li>Frontend Master</li>
-                    <li>Backend Master</li>
-                    <li>iOS Master</li>
-                    <li>Android Master</li>
-                    <li>AI Master</li>
+                    <div className="top">
+                        <li>Frontend Master</li>
+                        <li>Backend Master</li>
+                        <li>iOS Master</li>
+                    </div>
+                    <div className="bottom">
+                        <li>Android Master</li>
+                        <li>AI Master</li>
+                    </div>
                 </ul>
             </div>
 
@@ -66,8 +70,18 @@ const Wrapper = styled.div`
             margin: 0;
             padding-left: 20px;
             display: flex;
-            flex-direction: column;
-            gap: 5px;
+            gap: 10px;  
+            .top{
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+            }
+            .bottom{
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                margin-left: 20px;
+            }
         }
     }
 
