@@ -18,7 +18,6 @@ const Wrapper = styled.div`
     width: 100%;
     justify-content: center;
     align-items: flex-start;
-    margin-top: 60px;
 `
 
 export default MyPage;
