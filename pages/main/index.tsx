@@ -11,11 +11,11 @@ const Main = () => {
             <Wrapper>
                 <User />
                 <div className="roadmap">
-                    <Roadmap type={"Frontend Roadmap"} />
-                    <Roadmap type={"Backend Roadmap"} />
-                    <Roadmap type={"iOS Roadmap"} />
-                    <Roadmap type={"Android Roadmap"} />
-                    <Roadmap type={"AI Roadmap"} />
+                    <Roadmap type={"Frontend Roadmap"} progress={70} />
+                    <Roadmap type={"Backend Roadmap"} progress={100} />
+                    <Roadmap type={"iOS Roadmap"} progress={70} />
+                    <Roadmap type={"Android Roadmap"} progress={100} />
+                    <Roadmap type={"AI Roadmap"} progress={70} />
                 </div>
                 <Lecture />
             </Wrapper>
