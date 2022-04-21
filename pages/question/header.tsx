@@ -7,7 +7,9 @@ const Header: NextPage = () => {
     return(
         <Wrapper>
             <div className="left">
-                <img src="https://dash-map.s3.ap-northeast-2.amazonaws.com/frontend/small-logo.png" alt="" />
+                <Link href={"/main"}>
+                    <img src="https://dash-map.s3.ap-northeast-2.amazonaws.com/frontend/small-logo.png" alt="" />
+                </Link>
             </div>
             <div className="right">
                 <Link href={"/mypage"}>마이페이지</Link>
@@ -29,6 +31,7 @@ const Wrapper = styled.div`
         & img{
             width: 25px;
             margin-left: 20px;
+            cursor: pointer;
         }
     }
 
