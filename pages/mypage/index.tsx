@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Header from "../question/header";
 import User from "./user/user";
-import Level from "./level/level";
 
 const MyPage = () => {
     return(
@@ -9,7 +8,6 @@ const MyPage = () => {
             <Header />
             <Wrapper>
                 <User />
-                <Level level={20} medal={10} />
             </Wrapper>
         </>
     )
