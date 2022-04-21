@@ -1,16 +1,46 @@
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector  } from "react-redux";
 import styled from "styled-components";
+import { RootState } from "../../../reducers";
+import { TO_NEXT_QUEST } from "../../../reducers/cardReducer";
 import { COLOR } from "../../../styles/color";
 
+
 const Question = () => {
+
+    const {goQuestion, goNextQuest} = useSelector((state: RootState) => state.CardReducer);
+
+    const dispatch = useDispatch();
+
+    const [rotate, setRotate] = useState(180);
+
+    useEffect(() => {
+        if(goQuestion === true) {
+            setRotate(0);
+        }
+        else{
+            setRotate(180);
+        }
+    }, [goQuestion]);
+
+    const nextQuest = () => {
+        setRotate(180);
+        dispatch({
+            type: TO_NEXT_QUEST
+        });
+        
+    }
+
+
     return(
-        <Wrapper>
+        <Wrapper style={{transform: `rotateY(${rotate}deg)`, transition: '.4s', zIndex: `-${rotate}` }}>
             <p className="title">HTTP</p>
             <div className="middle">
                 <p className="question">Q. HTTP는 무엇의 약자일까요?</p>
                 <input type="text" />
             </div>
             <div className="bottom">
-                <button>다음 퀘스트</button>
+                <button onClick={nextQuest} >다음 퀘스트</button>
             </div>
         </Wrapper>
     )
@@ -24,7 +54,9 @@ const Wrapper = styled.div`
     box-shadow: 0px 0px 10px #C8C8C8;
     display: flex;
     flex-direction: column;
+    background: white;
     justify-content: space-between;
+    position: relative;
 
     .title{
         font-size: 25px;

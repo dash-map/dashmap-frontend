@@ -15,7 +15,7 @@ const Main: NextPage = () => {
                 <Header />
                 <div className="main">
                     <Order />
-                    {/* <Question /> */}
+                    <Question />
                     <Card />
                     <Status />
                 </div>

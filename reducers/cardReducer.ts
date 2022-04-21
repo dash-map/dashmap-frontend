@@ -22,14 +22,14 @@ type CardReducerActions = ActionType<typeof actions>;
 const cardReducer = createReducer<CardReducer, CardReducerActions>(initState, {
     [TO_QUESTION]: (state, action) => {
         return ({
-            ...state,
-            goQuestion: action.payload.goQuestion
+            goQuestion: true,
+            goNextQuest: false,
         })
     },
     [TO_NEXT_QUEST]: (state, action) => {
         return ({
-            ...state,
-            goNextQuest: action.payload.goNextQuest
+            goNextQuest: true,
+            goQuestion: false
         })
     }
 });

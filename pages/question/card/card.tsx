@@ -1,5 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
+import { RootState } from "../../../reducers";
+import { TO_QUESTION } from "../../../reducers/cardReducer";
 import { COLOR } from "../../../styles/color";
 
 interface Props{
@@ -9,19 +12,40 @@ interface Props{
 
 const Card = () => {
 
-    const [state, setState] = useState<Props>({
+    const { goQuestion} = useSelector((state: RootState) => state.CardReducer);
+
+    const dispatch = useDispatch();
+
+    const [stat, setStat] = useState<Props>({
         quest: "HTTP",
         number: 10
     });
 
-    const { quest, number} = state;
+    const [rotate, setRotate] = useState(0);
+
+    const change = () => {
+       dispatch({
+           type: TO_QUESTION
+       })
+    }
+
+    useEffect(() => {
+        if(goQuestion === true){
+            setRotate(180);
+        }else{
+            setRotate(0);
+            
+        }
+    }, [goQuestion])
+
+    const { quest, number} = stat;
 
     return(
-        <Wrapper>
+        <Wrapper style={{transform: `rotateY(${rotate}deg)`, transition: '.4s', zIndex: `-${rotate}`, }}>
             <p className="no">question #{number}</p>
             <p className="quest">{quest}</p>
             <div className="solve">
-                <button>문제풀기</button>
+                <button onClick={change}>문제풀기</button>
             </div>
         </Wrapper>
     )
@@ -37,6 +61,9 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    background: white;
+    position: absolute;
+    margin-bottom: 60px;
 
     .no{
         width: 100%;
@@ -60,12 +87,13 @@ const Wrapper = styled.div`
         justify-content: flex-end;
 
         & button{
-            padding: 10px 50px;
+            padding: 6px 50px;
             background: ${COLOR.main};
             color: ${COLOR.white};
             border: none;
             border-radius: 5px;
-            margin-right: 40px;
+            margin-bottom: -40px;
+            margin-right: 20px;
         }
     }
 `
