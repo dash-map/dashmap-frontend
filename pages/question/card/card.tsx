@@ -4,18 +4,21 @@ import { COLOR } from "../../../styles/color";
 
 interface Props{
     quest: string;
+    number: number;
 }
 
 const Card = () => {
 
     const [state, setState] = useState<Props>({
-        quest: "HTTP"
+        quest: "HTTP",
+        number: 10
     });
 
-    const { quest} = state;
+    const { quest, number} = state;
 
     return(
         <Wrapper>
+            <p className="no">question #{number}</p>
             <p className="quest">{quest}</p>
             <div className="solve">
                 <button>문제풀기</button>
@@ -35,10 +38,20 @@ const Wrapper = styled.div`
     flex-direction: column;
     justify-content: space-around;
 
+    .no{
+        width: 100%;
+        text-align: start;
+        margin-left: 20px;
+        font-size: 24px;
+        font-weight: bold;
+        margin-top: -10px;
+        color: ${COLOR.second}
+    }
+
     .quest{
         font-size: 90px;
         color: #ABABAB;
-        margin-top: 70px;
+        margin-top: 50px;
     }
 
     .solve{
