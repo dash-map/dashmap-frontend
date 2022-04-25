@@ -2,14 +2,20 @@ import { NextPage } from "next";
 import styled from "styled-components";
 import { COLOR } from "../styles/color";
 import { GlobalStyle } from "../styles/globalStyle";
+import Link from 'next/link'
 
 const signin: NextPage = () => {
+
+    const loginUri = 'https://github.com/login/oauth/authorize?client_id=e478d9cea0fa33472386';
+
     return(
         <>
             <GlobalStyle />
             <Wrapper>
                 <img src="https://dash-map.s3.ap-northeast-2.amazonaws.com/frontend/logo.png" alt="" />
-                <button>login with github</button>
+                <Link href={loginUri}>
+                    <button>login with github</button>
+                </Link>
             </Wrapper>
         </>
     )

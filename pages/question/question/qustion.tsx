@@ -8,7 +8,7 @@ import { COLOR } from "../../../styles/color";
 
 const Question = () => {
 
-    const {goQuestion, goNextQuest} = useSelector((state: RootState) => state.CardReducer);
+    const {goQuestion} = useSelector((state: RootState) => state.CardReducer);
 
     const dispatch = useDispatch();
 
@@ -28,7 +28,7 @@ const Question = () => {
         dispatch({
             type: TO_NEXT_QUEST
         });
-        
+
     }
 
 
