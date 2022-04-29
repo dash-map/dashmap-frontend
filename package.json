@@ -15,6 +15,7 @@
     "@types/next-redux-wrapper": "^3.0.0",
     "@types/react-redux": "^7.1.24",
     "@types/styled-components": "^5.1.24",
+    "axios": "^0.27.2",
     "immer": "^9.0.12",
     "next": "12.1.2",
     "next-auth": "^3.29.3",

@@ -1,36 +1,38 @@
-import qs from "qs";
-import { useEffect } from "react";
+import {useRouter} from "next/router";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-interface Props{
-    history: any;
-    location: any;
-}
+const Callback = () => {
+    
+    const router = useRouter();
+    const params = typeof window !== "undefined" ?  new URLSearchParams(location.search) : null;
+    const code = params?.get('code') ?? '';
+    const URL = "dashmap.kro.kr/api/login?code"
 
-const Callback = ({history, location}: Props) => {
-
-    const authUri = "https://github.com/login/oauth/authorize?client_id=e478d9cea0fa33472386";
+    const [lock, setLock] = useState<boolean>(true);
 
     useEffect(() => {
-        const getToken = async () => {
-            const {code} = qs.parse(location.search, {
-                ignoreQueryPrefix: true,
-            });
-    
-            try {
-                const response = await fetch(`${authUri}?code=${code}`);
-                const data = await response.json();
-    
-                localStorage.setItem('token', data.jwt);
-    
-                history.push('/main')
-            }catch(err) {}
-        };
+        if(code === '') return;
 
-        getToken();
-    }, [location, history, authUri]);
+        axios.get(`http://dashmap.kro.kr/api/login?code=${code}`).then((res) => {
+            console.log(res);
+            setLock(false);
+            localStorage.setItem("jwt", res.data.jwt);
+            localStorage.setItem('imageUrl', res.data.profileImageUrl);
+            localStorage.setItem('name', res.data.name);
+            localStorage.setItem('email', res.data.email);
+            router.push('/main')
+        }).catch((err) => {
+            console.log(err)
+        })
+        
+    }, [code]);
+
+    if (lock) return null;
 
     return(
-        <div></div>
+        <>
+        </>
     )
 }
 
