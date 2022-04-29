@@ -1,15 +1,59 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components"
 import { COLOR } from "../../../styles/color";
 
+interface Props {
+    email: string | null;
+    imageUrl: string | null;
+    name: string | null;
+}
+
 const User = () => {
+
+    const [state, setState] = useState<Props>({
+        email: "",
+        imageUrl: "",
+        name: "",
+    });
+
+    const {email, imageUrl, name} = state;
+
+    useEffect(() => {
+        setState({
+            name: localStorage.getItem('name'),
+            email: localStorage.getItem('email'),
+            imageUrl: localStorage.getItem('imageUrl')
+        });
+    }, []);
+
+    useEffect(() => {
+        console.log(state);
+    }, [state])
+
+
     return(
         <Wrapper>
             <div className="profile">
-                <img src="https://dash-map.s3.ap-northeast-2.amazonaws.com/frontend/laptop.png" alt="" />
+                {
+                    email !== null ? 
+                        <img src={imageUrl} alt="" />
+                            :
+                        <img style={{width: 170, height: 170, borderRadius: 0}} src="https://dash-map.s3.ap-northeast-2.amazonaws.com/frontend/laptop.png" alt="" />
+                }
             </div>
             <div className="info">
-                <p className="userName">손윤석</p>
-                <p className="email">thsdbstjr@gmail.com</p>
+                {
+                    name !== null ? 
+                    <>
+                        <p className="userName">{name}</p>  
+                        <p className="email">{email}</p>
+                    </>
+                    :
+                    <>
+                        <p className="userName">fuck u</p>  
+                        <p className="email">getoutofhere@sex.com</p>
+                    </>
+                }
                 <ul>
                     <div className="top">
                         <li>Frontend Master</li>
@@ -44,7 +88,9 @@ const Wrapper = styled.div`
         align-items: center;
         border-radius: 50%;
         & img{
-            width: 170px;
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
         }
     }
 

@@ -2,8 +2,25 @@ import { NextPage } from "next";
 import styled from "styled-components";
 import { COLOR } from "../../styles/color";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 const Header: NextPage = () => {
+
+    const [logout, setLogout] = useState(false);
+
+    const router = useRouter();
+
+    useEffect(() => {
+        if(logout === true){
+            localStorage.removeItem('name');
+            localStorage.removeItem('email');
+            localStorage.removeItem('imageUrl');
+            localStorage.removeItem('jwt');
+            router.reload()
+        }
+    }, [logout])
+
     return(
         <Wrapper>
             <div className="left">
@@ -13,7 +30,7 @@ const Header: NextPage = () => {
             </div>
             <div className="right">
                 <Link href={"/mypage"}>마이페이지</Link>
-                <Link href={""}>로그아웃</Link>
+                <p onClick={() => {setLogout(true)}}>로그아웃</p>
             </div>
         </Wrapper>
     )
@@ -38,15 +55,19 @@ const Wrapper = styled.div`
     .right{
         display: flex;
         font-weight: bold;
-        & a:nth-of-type(1){
+        align-items: center;
+        & a{
             color: ${COLOR.main};
             margin-right: 20px;
         }
 
-        & a:nth-of-type(2){
+        & p{
             color: ${COLOR.second};
             margin-right: 40px;
+            cursor: pointer;
         }
+
+        
     }
 `
 
