@@ -63,10 +63,8 @@ const Wrapper = styled.div`
     position: absolute;
     top: 0;
     left: -25%;
-
     width: 150%;
     height: 110%;
-
     background: linear-gradient(
       0deg,
       rgba(238, 238, 238, 1),
@@ -79,87 +77,65 @@ const Wrapper = styled.div`
     position: absolute;
     bottom: 0;
     left: 0;
-
     width: 20px;
     height: 100px;
-
     background-color: #FFA900;
-
     transform: scaleY(0);
     transform-style: preserve3d;
-
     animation: bar 3s cubic-bezier(0.81, 0.04, 0.4, 0.7) infinite;
   }
 
   .bar:nth-child(2) {
     left: 20px;
-
     background-color: #FFB117;
-
     animation-delay: 50ms;
   }
 
   .bar:nth-child(3) {
     left: 40px;
-
     background-color: #FFB92F;
-
     animation-delay: 100ms;
   }
 
   .bar:nth-child(4) {
     left: 60px;
-
     background-color: #FFC657;
-
     animation-delay: 150ms;
   }
 
   .bar:nth-child(5) {
     left: 80px;
-
     background-color: #FFD27B;
-
     animation-delay: 200ms;
   }
 
   .bar:nth-child(6) {
     left: 100px;
-
     background-color: #FFDA92;
-
     animation-delay: 250ms;
   }
 
   .bar:nth-child(7) {
     left: 120px;
-
     background-color: #FFE6B6;
-
     animation-delay: 300ms;
   }
 
   .bar:nth-child(8) {
     left: 140px;
-
     background-color: #FEEBC6;
-
     animation-delay: 350ms;
   }
 
   .bar:nth-child(9) {
     left: 160px;
-
     background-color: #FFEFCF;
-
     animation-delay: 400ms;
   }
 
   .bar:nth-child(10) {
     left: 180px;
-
     background-color: #FFF3DB;
-
     animation-delay: 450ms;
   }
 
@@ -188,4 +164,4 @@ const Wrapper = styled.div`
   }
 `
 
-export default Loader;
+export default Loader; 
