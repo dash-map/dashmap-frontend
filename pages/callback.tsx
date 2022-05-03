@@ -1,5 +1,6 @@
 import {useRouter} from "next/router";
 import { useEffect, useState } from "react";
+import Loader from "./loader";
 import axios from "axios";
 
 const Callback = () => {
@@ -32,6 +33,7 @@ const Callback = () => {
 
     return(
         <>
+            <Loader />
         </>
     )
 }
