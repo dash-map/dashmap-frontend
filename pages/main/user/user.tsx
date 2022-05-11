@@ -26,11 +26,6 @@ const User = () => {
         });
     }, []);
 
-    useEffect(() => {
-        console.log(state);
-    }, [state])
-
-
     return(
         <Wrapper>
             <div className="profile">

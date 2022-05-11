@@ -7,20 +7,28 @@ import { useRouter } from "next/router";
 
 const Header: NextPage = () => {
 
-    const [logout, setLogout] = useState(false);
-
-    const router = useRouter();
+    const [login, setLogin] = useState(false);
 
     useEffect(() => {
-        if(logout === true){
-            localStorage.removeItem('name');
-            localStorage.removeItem('email');
-            localStorage.removeItem('imageUrl');
-            localStorage.removeItem('jwt');
-            localStorage.removeItem('code');
-            router.reload()
+        if(!localStorage.getItem("email")){
+            setLogin(false);
+        }else{
+            setLogin(true);
         }
-    }, [logout])
+    }, [login]);
+
+    const logout = () => {
+        if(typeof window !== "undefined"){
+            localStorage.removeItem("access_token");
+            localStorage.removeItem("jwt");
+            localStorage.removeItem("email");
+            localStorage.removeItem("name");
+            localStorage.removeItem("imageUrl");
+            router.reload();
+        }
+    }
+
+    const router = useRouter();
 
     return(
         <Wrapper>
@@ -31,7 +39,12 @@ const Header: NextPage = () => {
             </div>
             <div className="right">
                 <Link href={"/mypage"}>마이페이지</Link>
-                <p onClick={() => {setLogout(true);}}>로그아웃</p>
+                {
+                    login ?
+                    <p onClick={() => {logout();}}>로그아웃</p>
+                    :
+                    <p onClick={() => {router.push("/signin")}}>로그인</p>
+                }
             </div>
         </Wrapper>
     )

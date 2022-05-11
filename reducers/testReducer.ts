@@ -27,7 +27,6 @@ const testReducer = createReducer<TestReducer, TestReducerActions>(initState, {
         text: ''
     }),
     [ADD_TEXT]: (state, action) => {
-        console.log(state.text);
         return ({
             no: action.payload.no,
             text: action.payload.text
