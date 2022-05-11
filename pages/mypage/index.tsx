@@ -8,7 +8,7 @@ const MyPage = () => {
             <Header />
             <Wrapper>
                 <User />
-            </Wrapper>
+            </Wrapper>  
         </>
     )
 }

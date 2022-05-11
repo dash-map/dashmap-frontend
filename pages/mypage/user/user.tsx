@@ -1,9 +1,25 @@
+import { useEffect } from "react";
 import styled from "styled-components";
 import { COLOR } from "../../../styles/color";
+import { requestWithAccessToken } from "../../../utils/axios/axios";
 import FieldBox from "../filedBox/fieldBox";
 import Progress from "../progress/progress";
 
 const User = () => {
+
+    useEffect(() => {
+        requestWithAccessToken({
+            method: "GET",
+            url: `/user/${localStorage.getItem("access_token")}`,
+            headers: {},
+            data: {}
+        }).then((res) => {
+            console.log(res);
+        }).catch((err) => {
+            console.log(err)
+        })
+    },[])
+
     return(
         <Container>
             <Wrapper>
