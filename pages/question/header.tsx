@@ -17,6 +17,7 @@ const Header: NextPage = () => {
             localStorage.removeItem('email');
             localStorage.removeItem('imageUrl');
             localStorage.removeItem('jwt');
+            localStorage.removeItem('code');
             router.reload()
         }
     }, [logout])
@@ -30,7 +31,7 @@ const Header: NextPage = () => {
             </div>
             <div className="right">
                 <Link href={"/mypage"}>마이페이지</Link>
-                <p onClick={() => {setLogout(true)}}>로그아웃</p>
+                <p onClick={() => {setLogout(true);}}>로그아웃</p>
             </div>
         </Wrapper>
     )

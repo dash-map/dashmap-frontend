@@ -18,6 +18,7 @@ const Callback = () => {
         axios.get(`http://dashmap.kro.kr/api/login?code=${code}`).then((res) => {
             console.log(res);
             setLock(false);
+            localStorage.setItem("code", code);
             localStorage.setItem("jwt", res.data.jwt);
             localStorage.setItem('imageUrl', res.data.profileImageUrl);
             localStorage.setItem('name', res.data.name);
