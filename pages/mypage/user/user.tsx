@@ -1,16 +1,58 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { COLOR } from "../../../styles/color";
 import { requestWithAccessToken } from "../../../utils/axios/axios";
 import FieldBox from "../filedBox/fieldBox";
 import Progress from "../progress/progress";
 
+interface Props {
+    email: string;
+    name: string;
+    image: string;
+    crown: {
+        fe: boolean;
+        be: boolean;
+        ios: boolean;
+        aos: boolean;
+        ai: boolean;
+    };
+    progress: {
+        fe: number;
+        be: number;
+        ios: number;
+        aos: number;
+        ai: number;
+    }
+}
+
 const User = () => {
+
+    const [state, setState] = useState<Props>({
+        email: "foaway@gmail.com",
+        name: "fuck u",
+        image: "https://dash-map.s3.ap-northeast-2.amazonaws.com/frontend/laptop.png",
+        crown: {
+            fe: false,
+            be: false,
+            ios: false,
+            aos: false,
+            ai: false,
+        },
+        progress: {
+            fe: 0,
+            be: 0,
+            ios: 0,
+            aos: 0,
+            ai: 0
+        }
+    });
+
+    const {email, name, image, crown, progress} = state;
 
     useEffect(() => {
         requestWithAccessToken({
             method: "GET",
-            url: `/user/${localStorage.getItem("access_token")}`,
+            url: `/user/${localStorage.getItem("userId")}`,
             headers: {},
             data: {}
         }).then((res) => {
@@ -18,36 +60,38 @@ const User = () => {
         }).catch((err) => {
             console.log(err)
         })
-    },[])
+    },[]);
+
 
     return(
         <Container>
             <Wrapper>
                 <div className="profileImg">
-                    <img src="https://dash-map.s3.ap-northeast-2.amazonaws.com/frontend/laptop.png" alt="" />
+                    <img src={image} alt="" />
                 </div>
                 <div className="info">
                     <div className="top">
-                        <p>NAME: &nbsp;&nbsp;<span>손윤석</span></p>
+                        <p style={{marginBottom: "5px"}}>NAME: &nbsp;&nbsp;<span>{name}</span></p>
+                        <p style={{color: `${COLOR.second}`, marginTop: "5px"}}>EMAIL: &nbsp;&nbsp;<span>{email}</span></p>
                     </div>
                     <div className="bottom">
-                        <FieldBox field={"FE"} done={false} />
-                        <FieldBox field={"BE"} done={true} />
-                        <FieldBox field={"AOS"} done={false} />
-                        <FieldBox field={"iOS"} done={true} />
-                        <FieldBox field={"AI"} done={false} />
+                        <FieldBox field={"FE"} done={crown.fe} />
+                        <FieldBox field={"BE"} done={crown.be} />
+                        <FieldBox field={"AOS"} done={crown.aos} />
+                        <FieldBox field={"iOS"} done={crown.ios} />
+                        <FieldBox field={"AI"} done={crown.ai} />
                     </div>
                 </div>
             </Wrapper>
             <div className="progress">
                 <div className="topProgress">
-                    <Progress title={"Frontend roadmap"} pro={70} />
-                    <Progress title={"Backend roadmap"} pro={100} />
-                    <Progress title={"Android roadmap"} pro={70} />
+                    <Progress title={"Frontend roadmap"} pro={progress.fe} />
+                    <Progress title={"Backend roadmap"} pro={progress.be} />
+                    <Progress title={"Android roadmap"} pro={progress.aos} />
                 </div>
                 <div className="bottomProgress">
-                    <Progress title={"iOS roadmap"} pro={100} />
-                    <Progress title={"AI roadmap"} pro={70} />
+                    <Progress title={"iOS roadmap"} pro={progress.ios} />
+                    <Progress title={"AI roadmap"} pro={progress.ai} />
                 </div>
             </div>
         </Container>
