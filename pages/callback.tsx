@@ -14,9 +14,9 @@ const Callback = () => {
 
     useEffect(() => {
         if(code === '') return;
-
         axios.get(`http://dashmap.kro.kr/api/login?code=${code}`).then((res) => {
             setLock(false);
+            localStorage.setItem("userId", res.data.userId);
             localStorage.setItem("access_token", res.data.access_token)
             localStorage.setItem("jwt", res.data.jwt);
             localStorage.setItem('imageUrl', res.data.profileImageUrl);
