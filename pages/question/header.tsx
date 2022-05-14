@@ -24,6 +24,7 @@ const Header: NextPage = () => {
             localStorage.removeItem("email");
             localStorage.removeItem("name");
             localStorage.removeItem("imageUrl");
+            localStorage.removeItem("userId");
             router.reload();
         }
     }
