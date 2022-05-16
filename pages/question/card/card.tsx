@@ -78,7 +78,7 @@ const Wrapper = styled.div`
     .quest{
         font-size: 90px;
         color: #ABABAB;
-        margin-top: 50px;
+        margin-top: 0px;
     }
 
     .solve{
