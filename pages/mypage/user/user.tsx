@@ -30,7 +30,7 @@ const User = () => {
     const [state, setState] = useState<Props>({
         email: "foaway@gmail.com",
         name: "fuck u",
-        image: "https://dash-map.s3.ap-northeast-2.amazonaws.com/frontend/laptop.png",
+        image: "",
         crown: {
             fe: false,
             be: false,
@@ -57,6 +57,25 @@ const User = () => {
             data: {}
         }).then((res) => {
             console.log(res);
+            setState({
+                email: res.data.email,
+                name: res.data.name,
+                image: res.data.profileImageUrl,
+                crown: {
+                    fe: res.data.crown.isFeClear,
+                    be: res.data.crown.isBeClear,
+                    ios: res.data.crown.isIosClear,
+                    aos: res.data.crown.isAosClear,
+                    ai: res.data.crown.isAiClear,
+                },
+                progress: {
+                    fe: res.data.progress.feCount,
+                    be: res.data.progress.beCount,
+                    ios: res.data.progress.iosCount,
+                    aos: res.data.progress.aosCount,
+                    ai: res.data.progress.aiCount,
+                }
+            })
         }).catch((err) => {
             console.log(err)
         })
@@ -67,7 +86,12 @@ const User = () => {
         <Container>
             <Wrapper>
                 <div className="profileImg">
-                    <img src={image} alt="" />
+                    {
+                        image == "" ? 
+                        <img style={{width: "170px"}} src="https://dash-map.s3.ap-northeast-2.amazonaws.com/frontend/laptop.png" alt="" />
+                        :
+                        <img src={image} alt="" />
+                    }
                 </div>
                 <div className="info">
                     <div className="top">
@@ -136,7 +160,8 @@ const Wrapper = styled.div`
         background: linear-gradient(#FFD074, #F9A296);
         border-radius: 50%;
         & img{
-            width: 190px;
+            width: 250px;
+            border-radius: 50%;
         }
     }
 
