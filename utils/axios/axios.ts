@@ -8,7 +8,7 @@ interface AxiosProps {
 }
 
 const BASE_URL = "http://dashmap.kro.kr/api";
-const ACCESS_TOKEN = "access_token";
+const ACCESS_TOKEN = "jwt";
 
 export const requestWithOutAccessToken = ({ method, url, headers, data }: AxiosProps) => {
     return axios({
@@ -27,7 +27,7 @@ export const requestWithAccessToken = ({ method, url, headers, data }: AxiosProp
     return axios({
         method,
         url: BASE_URL + url,
-        headers: { ...headers, Authorization: `Token ${localStorage.getItem(ACCESS_TOKEN)}` },
+        headers: { ...headers, Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}` },
         data
     }).then((res) => {
         return res;
