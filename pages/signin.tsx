@@ -11,8 +11,6 @@ const signin = () => {
     // const REDIRECT_URI = `redirect_uri=http://localhost:3000/oauth/github`;
     const LOGIN_URI = `${GITHUB_LOGIN_URI}?${CLIENT_ID}`;
 
-    // const loginUri = 'https://github.com/login/oauth/authorize?client_id=e478d9cea0fa33472386';
-
     return(
         <>
             <GlobalStyle />

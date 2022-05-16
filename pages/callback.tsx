@@ -29,7 +29,7 @@ const Callback = () => {
         
     }, [code]);
 
-    if (lock) return null;
+    // if (lock) return null;
 
     return(
         <>
