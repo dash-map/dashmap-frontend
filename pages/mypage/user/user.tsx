@@ -76,6 +76,11 @@ const User = () => {
                     ai: res.data.progress.aiCount,
                 }
             })
+            localStorage.setItem("fe", res.data.progress.feCount);
+            localStorage.setItem("be", res.data.progress.beCount);
+            localStorage.setItem("ios", res.data.progress.iosCount);
+            localStorage.setItem("aos", res.data.progress.aosCount);
+            localStorage.setItem("ai", res.data.progress.aiCount);
         }).catch((err) => {
             console.log(err)
         })
@@ -109,13 +114,13 @@ const User = () => {
             </Wrapper>
             <div className="progress">
                 <div className="topProgress">
-                    <Progress title={"Frontend roadmap"} pro={progress.fe} />
-                    <Progress title={"Backend roadmap"} pro={progress.be} />
-                    <Progress title={"Android roadmap"} pro={progress.aos} />
+                    <Progress title={"Frontend roadmap"} pro={progress.fe * 10} />
+                    <Progress title={"Backend roadmap"} pro={progress.be * 10} />
+                    <Progress title={"Android roadmap"} pro={progress.aos * 10} />
                 </div>
                 <div className="bottomProgress">
-                    <Progress title={"iOS roadmap"} pro={progress.ios} />
-                    <Progress title={"AI roadmap"} pro={progress.ai} />
+                    <Progress title={"iOS roadmap"} pro={progress.ios * 10} />
+                    <Progress title={"AI roadmap"} pro={progress.ai * 10} />
                 </div>
             </div>
         </Container>
