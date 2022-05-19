@@ -1,5 +1,10 @@
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import {useRouter} from "next/router";
+import { actions} from "../../../reducers/fieldReducer";
 import { COLOR } from "../../../styles/color";
+
 
 interface  Props{
     type: string;
@@ -7,8 +12,35 @@ interface  Props{
 }
 
 const Roadmap = ({type, progress}: Props) => {
+
+    const router = useRouter();
+
+    const dispatch = useDispatch();
+
+    const changeField = (e: any) => {
+        switch(e) {
+            case "Frontend Roadmap":
+                dispatch(actions.setField({field: "fe"}))
+                break;
+            case "Backend Roadmap":
+                dispatch(actions.setField({field: "be"}))
+                break;
+            case "iOS Roadmap":
+                dispatch(actions.setField({field: "ios"}))
+                break;
+            case "Android Roadmap":
+                dispatch(actions.setField({field: "aos"}))
+                break;
+            case "AI Roadmap":  
+                dispatch(actions.setField({field: "fai"}))
+                break;
+            default: 
+                return;
+        }
+    }
+
     return(
-        <Wrapper>
+        <Wrapper onClick={() => {changeField(type); router.push("/question") }}>
             <div className="box">
                 <p>{type}</p>
                 <div className="proCon">
