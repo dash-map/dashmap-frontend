@@ -41,9 +41,9 @@ const Question = () => {
                 <div className="answerWrapper">
                     <div className="top">
                         {
-                            questions.map((e: any, index: string | number) => {
+                            questions.map((e: any, index: number) => {
                                 return(
-                                    <button disabled={state} onClick={() => {check(index)}} className="answer">{index + 1}. {questions[index].question}</button>
+                                    <button key={index} disabled={state} onClick={() => {check(index)}} className="answer">{index + 1}. {questions[index].question}</button>
                                 )
                             })
                         }

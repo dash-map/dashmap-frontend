@@ -20,7 +20,7 @@ const Card = () => {
     }
 
     useEffect(() => {
-        setState(localStorage.getItem(field));
+        setState(localStorage.getItem(field) || '');
     }, [field]);
     
     useEffect(() => {
