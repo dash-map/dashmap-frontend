@@ -4,7 +4,7 @@ import { COLOR } from "../../../styles/color";
 
 interface Props {
     email: string | null;
-    imageUrl: string | null;
+    imageUrl: string | undefined;
     name: string | null;
 }
 
@@ -22,7 +22,7 @@ const User = () => {
         setState({
             name: localStorage.getItem('name'),
             email: localStorage.getItem('email'),
-            imageUrl: localStorage.getItem('imageUrl')
+            imageUrl: localStorage.getItem('imageUrl') || ''
         });
     }, []);
 
