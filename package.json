@@ -29,6 +29,7 @@
     "recoil": "^0.7.2",
     "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.9",
+    "styled-components": "^5.3.5",
     "styled-reset": "^4.3.4",
     "typesafe-actions": "^5.1.0"
   },
