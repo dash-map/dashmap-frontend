@@ -1,7 +1,7 @@
 import { ActionType, createAction, createReducer } from "typesafe-actions";
 
 interface FieldReducer {
-    field: string;
+    field: string | any;
 }
 
 const initState: FieldReducer = {
@@ -12,8 +12,8 @@ export const SET_FIELD = 'fieldReducer/SET_FIELD';
 
 export const setField = createAction(SET_FIELD)<FieldReducer>();
 
-export const actions = { setField };
-type FieldReducerActions = ActionType<typeof actions>;
+export const fieldActions = { setField };
+type FieldReducerActions = ActionType<typeof fieldActions>;
 
 const fieldReducer = createReducer<FieldReducer, FieldReducerActions>(initState, {
     [SET_FIELD]: (state, action) => {

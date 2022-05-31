@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector  } from "react-redux";
 import styled from "styled-components";
@@ -5,71 +6,52 @@ import { RootState } from "../../../reducers";
 import { TO_NEXT_QUEST } from "../../../reducers/cardReducer";
 import { COLOR } from "../../../styles/color";
 
-interface Props{
-    quest: string;
-    problem: string;
-    answer_1: string;
-    answer_2: string;
-    answer_3: string;
-    answer_4: string;
-}
-
 const Question = () => {
 
-    const {goQuestion} = useSelector((state: RootState) => state.CardReducer);
-
-    const dispatch = useDispatch();
-
-    const [rotate, setRotate] = useState(180);
-
-    const [state, setState] = useState<Props>({
-        quest: "",
-        problem: "",
-        answer_1: "",
-        answer_2: "",
-        answer_3: "",
-        answer_4: ""
-    });
-
-    const {quest, answer_1, answer_2, answer_3, answer_4} = state;
+    const {problem, questions, quest, answer} = useSelector((state: RootState) => state.questionReducer);
+    const [state, setState] = useState(false);
+    const {field} = useSelector((state: RootState) => state.fieldReducer);
+    const [next, setNext] = useState<any>();
+    const router = useRouter();
 
     useEffect(() => {
-        if(goQuestion === true) {
-            setRotate(0);
-        }
-        else{
-            setRotate(180);
-        }   
-    }, [goQuestion]);
+        setNext(localStorage.getItem(field));
+        
+    }, [field])
 
     const nextQuest = () => {
-        setRotate(180);
-        dispatch({
-            type: TO_NEXT_QUEST, 
-            
-        });
-
+        localStorage.setItem(field, (parseInt(next) + 1).toString())
+        router.reload();
     }
 
+    const check = (e: number) => {
+        if(e + 1 == answer) {
+            alert("맞았습니다");
+            setState(true);
+        }else{
+            alert("다시 공부해 오세요.")
+        }
+    }
 
     return(
-        <Wrapper style={{transform: `rotateY(${rotate}deg)`, transition: '.4s', zIndex: `-${rotate}` }}>
+        <Wrapper>
             <p className="title">{quest}</p>
             <div className="middle">
-                <p className="question">Q. {state.problem}</p>
+                <p className="question">Q. {problem}</p>
                 <div className="answerWrapper">
                     <div className="top">
-                        <button className="answer">{answer_1}</button>
-                        <button className="answer">{answer_2}</button>
-                    </div>
-                    <div className="bottom">
-                        <button className="answer">{answer_3}</button>
-                        <button className="answer">{answer_4}</button>
+                        {
+                            questions.map((e: any, index: string | number) => {
+                                return(
+                                    <button disabled={state} onClick={() => {check(index)}} className="answer">{index + 1}. {questions[index].question}</button>
+                                )
+                            })
+                        }
                     </div>
                 </div>
             </div>
             <div className="bottom">
-                <button onClick={nextQuest} >다음 퀘스트</button>
+                <button disabled={!state} onClick={nextQuest} >다음 퀘스트</button>
             </div>
         </Wrapper>
     )
@@ -103,20 +85,11 @@ const Wrapper = styled.div`
 
     .answerWrapper {
         .top{
-            display: flex;
+            display: grid;
+            grid: ". .";
             .answer{
                 margin-top: 20px;
-                width: 70%;
-                background: none;
-                color: ${COLOR.second};
-                border: 1px solid ${COLOR.second};
-            }
-        }
-        .bottom{ 
-            display: flex;
-            .answer{
-                width: 70%;
-                margin-top: 20px;
+                width: 90%;
                 background: none;
                 color: ${COLOR.second};
                 border: 1px solid ${COLOR.second};
@@ -131,6 +104,16 @@ const Wrapper = styled.div`
         .answer:active{
             background: #e76081;
             border: 1px solid #e76081;
+        }
+
+        .answer:disabled{
+            border: 1px solid #febccd;
+            color: #febccd;
+        }
+
+        .answer:hover:disabled{
+            background: none;
+            cursor: not-allowed;
         }
     }
 
@@ -149,6 +132,11 @@ const Wrapper = styled.div`
         border-radius: 5px;
         margin-top: -50px;
         margin-right: 20px;
+    }
+
+    & button:disabled{
+        background: #ffdd99;
+        cursor: not-allowed;
     }
 `
 

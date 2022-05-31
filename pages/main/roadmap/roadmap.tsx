@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import {useRouter} from "next/router";
-import { actions} from "../../../reducers/fieldReducer";
+import { fieldActions} from "../../../reducers/fieldReducer";
 import { COLOR } from "../../../styles/color";
 
 
@@ -20,19 +20,24 @@ const Roadmap = ({type, progress}: Props) => {
     const changeField = (e: any) => {
         switch(e) {
             case "Frontend Roadmap":
-                dispatch(actions.setField({field: "fe"}))
+                dispatch(fieldActions.setField({field: "fe"}))
+                localStorage.setItem("field", "fe")
                 break;
             case "Backend Roadmap":
-                dispatch(actions.setField({field: "be"}))
+                dispatch(fieldActions.setField({field: "be"}))
+                localStorage.setItem("field", "be")
                 break;
             case "iOS Roadmap":
-                dispatch(actions.setField({field: "ios"}))
+                dispatch(fieldActions.setField({field: "ios"}))
+                localStorage.setItem("field", "ios")
                 break;
             case "Android Roadmap":
-                dispatch(actions.setField({field: "aos"}))
+                dispatch(fieldActions.setField({field: "aos"}))
+                localStorage.setItem("field", "aos")
                 break;
             case "AI Roadmap":  
-                dispatch(actions.setField({field: "fai"}))
+                dispatch(fieldActions.setField({field: "ai"}))
+                localStorage.setItem("field", "ai")
                 break;
             default: 
                 return;

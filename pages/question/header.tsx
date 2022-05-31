@@ -19,12 +19,8 @@ const Header: NextPage = () => {
 
     const logout = () => {
         if(typeof window !== "undefined"){
-            localStorage.removeItem("access_token");
-            localStorage.removeItem("jwt");
-            localStorage.removeItem("email");
-            localStorage.removeItem("name");
-            localStorage.removeItem("imageUrl");
-            localStorage.removeItem("userId");
+            localStorage.clear();
+            router.push("/main");
             router.reload();
         }
     }

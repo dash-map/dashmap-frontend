@@ -4,65 +4,13 @@ import styled from "styled-components";
 import { RootState } from "../../../reducers";
 import { TO_QUESTION } from "../../../reducers/cardReducer";
 import { COLOR } from "../../../styles/color";
-import { requestWithAccessToken } from "../../../utils/axios/axios";
-
-interface Props{
-    quest: string;
-    number: number;
-    id: number | any;
-}
 
 const Card = () => {
-
-
-    const {field} = useSelector((state: RootState) => state.fieldReducer);
-
-    useEffect(() => {
-        requestWithAccessToken({
-            method: "GET",
-            url: "/quest",
-            headers: {},
-            data: {
-                // "userId": parseInt(stat.id),
-                // "field": field,
-                // "quest": 1
-                "userId": 1,
-                "field": "fe",
-                "quest": 1
-            }
-        }).then((res) => {
-            console.log(res)
-        }).catch((err) => {
-            console.log(err);
-        })
-        setStat({
-            ...stat,
-            id: localStorage.getItem("userId"),
-        })
-    }, [])
-
-    useEffect(() => {
-
-        if(field !== ""){
-        console.log(parseInt(stat.id), field, 1)
-
-            
-        }else{
-            return;
-        }
-    }, [field]);
-
-
     const { goQuestion} = useSelector((state: RootState) => state.CardReducer);
-
+    const {quest} = useSelector((state: RootState) => state.questionReducer);
+    const {field} = useSelector((state: RootState) => state.fieldReducer)
     const dispatch = useDispatch();
-
-    const [stat, setStat] = useState<Props>({
-        quest: "HTTP",
-        number: 10,
-        id: 0
-    });
-
+    const [state, setState] = useState("");
     const [rotate, setRotate] = useState(0);
 
     const change = () => {
@@ -72,19 +20,20 @@ const Card = () => {
     }
 
     useEffect(() => {
+        setState(localStorage.getItem(field));
+    }, [field]);
+    
+    useEffect(() => {
         if(goQuestion === true){
             setRotate(180);
         }else{
             setRotate(0);
-            
         }
     }, [goQuestion])
 
-    const { quest, number} = stat;
-
     return(
         <Wrapper style={{transform: `rotateY(${rotate}deg)`, transition: '.4s', zIndex: `-${rotate}`, }}>
-            <p className="no">question #{number}</p>
+            <p className="no">question #{state}</p>
             <p className="quest">{quest}</p>
             <div className="solve">
                 <button onClick={change}>문제풀기</button>
