@@ -7,7 +7,7 @@ interface AxiosProps {
     data: any;
 }
 
-const BASE_URL = "http://dashmap.kro.kr/api";
+const BASE_URL = "https://dashmap.shop";
 const ACCESS_TOKEN = "jwt";
 
 export const requestWithOutAccessToken = ({ method, url, headers, data }: AxiosProps) => {

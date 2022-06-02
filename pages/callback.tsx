@@ -8,13 +8,13 @@ const Callback = () => {
     const router = useRouter();
     const params = typeof window !== "undefined" ?  new URLSearchParams(location.search) : null;
     const code = params?.get('code') ?? '';
-    const URL = "dashmap.kro.kr/api/login?code"
+    const URL = 'https://dashmap.shop'
 
     const [lock, setLock] = useState<boolean>(true);
 
     useEffect(() => {
         if(code === '') return;
-        axios.get(`http://dashmap.kro.kr/api/login?code=${code}`).then((res) => {
+        axios.get(`${URL}/api/login?code=${code}`).then((res) => {
             setLock(false);
             localStorage.setItem("userId", res.data.userId);
             localStorage.setItem("access_token", res.data.access_token)
