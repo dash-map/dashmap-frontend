@@ -8,7 +8,6 @@ const signin = () => {
 
     const GITHUB_LOGIN_URI = 'https://github.com/login/oauth/authorize';
     const CLIENT_ID = `client_id=e478d9cea0fa33472386`;
-    // const REDIRECT_URI = `redirect_uri=http://localhost:3000/oauth/github`;
     const LOGIN_URI = `${GITHUB_LOGIN_URI}?${CLIENT_ID}`;
 
     return(
