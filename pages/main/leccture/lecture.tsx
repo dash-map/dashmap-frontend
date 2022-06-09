@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { requestWithAccessToken } from "../../../utils/axios/axios";
+import axios from "axios";
 
 interface Props {
     rec_1: string;
@@ -22,18 +23,9 @@ const Lecture = () => {
         rec_6: "https://www.youtube.com/embed/IDVnZPjRCYg",
     });
 
-    useEffect(() => {
-        requestWithAccessToken({
-            url: "/recommend",
-            method: "GET",
-            headers: {},
-            data: {}
-        }).then((res) => {
-            console.log(res);
-        }).catch((err) => {
-            console.log(err);
-        })
-    }, [])
+    const URL = "192.168.180.148:8080";
+
+
 
     return(
         <Wrapper>

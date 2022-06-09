@@ -4,6 +4,7 @@ import Roadmap from "./roadmap/roadmap";
 import Lecture from "./leccture/lecture";
 import Header from "../question/header";
 import { useEffect, useState } from "react";
+import axios from "axios";
 import { requestWithAccessToken } from "../../utils/axios/axios";
 
 interface Props {
@@ -26,7 +27,14 @@ const Main = () => {
 
     const {fe, be, ios, aos, ai} = state;
 
+
+
     useEffect(() => {
+        axios.get(`192.168.180.148:8080/recommend/${1}`).then((res) => {
+            console.log(res)
+        }).catch((err) => {
+            console.log(err);
+        })
         requestWithAccessToken({
             method: "GET",
             url: `/user/${localStorage.getItem("userId")}`,
