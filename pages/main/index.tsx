@@ -27,12 +27,12 @@ const Main = () => {
 
     const {fe, be, ios, aos, ai} = state;
 
-    const URL = 'http://192.168.180.148:8080'
+    const URL = 'http://dashmap.kro.kr'
 
 
 
     useEffect(() => {
-        axios.get(`${URL}/recommend/${1}`).then((res) => {
+        axios.get(`${URL}/recommend/${localStorage.getItem("userId")}`).then((res) => {
             console.log(res)
         }).catch((err) => {
             console.log(err);
