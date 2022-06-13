@@ -32,11 +32,7 @@ const Main = () => {
 
 
     useEffect(() => {
-        axios.get(`${URL}/recommend/${localStorage.getItem("userId")}`).then((res) => {
-            console.log(res)
-        }).catch((err) => {
-            console.log(err);
-        })
+
         requestWithAccessToken({
             method: "GET",
             url: `/user/${localStorage.getItem("userId")}`,
