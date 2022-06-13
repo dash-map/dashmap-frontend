@@ -3,28 +3,24 @@ import styled from "styled-components";
 import { requestWithAccessToken } from "../../../utils/axios/axios";
 import axios from "axios";
 
-interface Props {
-    rec_1: string;
-    rec_2: string;
-    rec_3: string;
-    rec_4: string;
-    rec_5: string;
-    rec_6: string;
-}
-
 const Lecture = () => {
 
-    const [state, setState] = useState<Props>({
-        rec_1: "https://www.youtube.com/embed/edWbHp_k_9Y",
-        rec_2: "https://www.youtube.com/embed/DHPeeEvDbdo",
-        rec_3: "https://www.youtube.com/embed/BUTP-YsD3nM",
-        rec_4: "ttps://www.youtube.com/embed/cEUIhLOgWZI",
-        rec_5: "https://www.youtube.com/embed/9XjpfW8U3P4",
-        rec_6: "https://www.youtube.com/embed/IDVnZPjRCYg",
-    });
+    const [state, setState] = useState<any>([]);
 
-    const URL = "192.168.180.148:8080";
+    const URL = 'https://dashmap.kro.kr';
 
+    useEffect(() => {
+        axios.get(`${URL}/recommend/${localStorage.getItem("userId")}`).then((res) => {
+            console.log(res);
+            setState(res.data);
+        }).catch((err) => {
+            console.log(err);
+        })
+    }, [])
+
+    useEffect(() => {
+        console.log(state)
+    }, [state])
 
 
     return(
