@@ -27,7 +27,7 @@ const Main = () => {
 
     const {fe, be, ios, aos, ai} = state;
 
-    const URL = 'http://dashmap.kro.kr'
+    const URL = 'https://dashmap.kro.kr'
 
 
 
