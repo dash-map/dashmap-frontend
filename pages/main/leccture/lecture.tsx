@@ -65,6 +65,20 @@ const Lecture = () => {
             return false;
         }
     }
+    
+
+    const isIFrame = (input: HTMLElement | null): input is HTMLIFrameElement =>
+    input !== null && input.tagName === 'IFRAME';
+
+    const iframeOnclick  = () => {
+        const ifr = document.getElementById("ifr")!;
+        if(isIFrame(ifr) && ifr.contentWindow ) {
+            ifr.contentWindow.document.body.onclick = function() {
+                console.log("sdasdasd")
+            }
+        }
+        
+    }
 
 
     return(
@@ -72,9 +86,8 @@ const Lecture = () => {
             {
                 state.rec_1[1] &&
                 <>
-                        <div onClick={() => {setWatched({...watched, first: 1});watch(state.rec_1[0].id, watched.first)}}>
-                            <iframe width="560px" height="315px" src={state.rec_1[1].url} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-                        </div>
+                        {/* <div onClick={() => {setWatched({...watched, first: 1});watch(state.rec_1[0].id, watched.first)}}> */}
+                            <iframe onLoad={iframeOnclick} id="ifr" width="560px" height="315px" src={state.rec_1[1].url} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                         <iframe width="560" height="315" src={state.rec_2[1].url} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                         <iframe width="560" height="315" src={state.rec_3[1].url} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                         <iframe width="560" height="315" src={state.rec_4[1].url} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
