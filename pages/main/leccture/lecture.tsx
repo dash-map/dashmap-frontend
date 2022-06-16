@@ -74,7 +74,7 @@ const Lecture = () => {
         const ifr = document.getElementById("ifr")!;
         if(isIFrame(ifr) && ifr.contentWindow ) {
             ifr.contentWindow.document.body.onclick = function() {
-                console.log("sdasdasd")
+                window.open("about:blank");
             }
         }
         
