@@ -25,6 +25,15 @@ const Lecture = () => {
 
     const URL = 'https://dashmap.kro.kr';
 
+    const [watched, setWatched] = useState({
+        first: 0,
+        second: 0,
+        third: 0,
+        fourth: 0,
+        fifth: 0,
+        sixth: 0,
+    });
+
     useEffect(() => {
         axios.get(`${URL}/recommend/${localStorage.getItem("userId")}`).then((res) => {
             setState({
@@ -45,12 +54,16 @@ const Lecture = () => {
         console.log(state)
     }, [state]);
 
-    const watch = (e) => {
-        axios.post(`${URL}/watch-record/${localStorage.getItem("userId")}/${e}?rating=${5}`).then((res) => {
-            console.log(res)
-        }).catch((err) => {
-            console.log(err)
-        })
+    const watch = (e: any, index: any) => {
+        if(index == 0){
+            axios.post(`${URL}/recommend/${localStorage.getItem("userId")}/${e}?ratings=${5}`).then((res) => {
+                console.log(res)
+            }).catch((err) => {
+                console.log(err)
+            })
+        }else{
+            return false;
+        }
     }
 
 
@@ -59,7 +72,9 @@ const Lecture = () => {
             {
                 state.rec_1[1] &&
                 <>
-                        <iframe onClick={() => {watch(state.rec_1[0].id)}} width="560px" height="315px" src={state.rec_1[1].url} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                        <div onClick={() => {setWatched({...watched, first: 1});watch(state.rec_1[0].id, watched.first)}}>
+                            <iframe width="560px" height="315px" src={state.rec_1[1].url} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                        </div>
                         <iframe width="560" height="315" src={state.rec_2[1].url} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                         <iframe width="560" height="315" src={state.rec_3[1].url} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                         <iframe width="560" height="315" src={state.rec_4[1].url} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
