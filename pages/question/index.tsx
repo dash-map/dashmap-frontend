@@ -49,7 +49,7 @@ const Main: NextPage = () => {
         console.log(state)
         requestWithAccessToken({
             method: "POST",
-            url: "quest",
+            url: "/quest",
             headers: {},
             data: {
                 "userId": parseInt(state.userId),
