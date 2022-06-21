@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { FC, useState } from "react";
 import styled from "styled-components";
 import { COLOR } from "../../../styles/color";
@@ -7,6 +8,8 @@ interface Props{
 }
 
 const Order = () => {
+
+    const router = useRouter();
 
     const [order, setOrder] = useState<Props>({
         type: "FRONT_END",
@@ -18,7 +21,7 @@ const Order = () => {
             <div className="left">
                 <p className="title">THE STACK</p>
                 <p className="type">{order.type} ROADMAP</p>
-                <button>로드맵 전체보기</button>
+                <button onClick={() => {router.push("/roadmap")}}>로드맵 전체보기</button>
             </div>
             <div className="right">
                 <img src="https://dash-map.s3.ap-northeast-2.amazonaws.com/frontend/laptop.png" alt="" />
