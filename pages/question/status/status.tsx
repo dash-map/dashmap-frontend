@@ -1,21 +1,37 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 interface Props{
-    progress: number;
+    progress: any;
+    field: any;
 }
 
 const Status = () => {
 
     const [pro, setPro] = useState<Props>({
         progress: 38,
+        field: ""
     });
+
+    useEffect(() => {
+        setPro({   
+            ...pro, 
+            field: localStorage.getItem("field")
+        })
+    }, []);
+
+    useEffect(() => {
+        setPro({
+            ...pro,
+            progress: localStorage.getItem(pro.field)
+        })
+    }, [pro.field])
 
     return(
         <Container>
             <Wrapper>
                 <StatusBar>
-                    <div style={{width: `${pro.progress}%`, height: "25px", }} className="progress"></div>
+                    <div style={{width: `${Number(pro.progress)}%`, height: "25px", }} className="progress"></div>
                 </StatusBar>
             </Wrapper>
             <p>{pro.progress}%</p>
