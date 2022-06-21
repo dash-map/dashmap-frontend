@@ -25,7 +25,7 @@ const Status = () => {
                     <div style={{width: `${Number(pro.progress) * 10}%`, height: "25px", }} className="progress"></div>
                 </StatusBar>
             </Wrapper>
-            <p>{pro.progress}%</p>
+            <p>{pro.progress * 10}%</p>
         </Container>
     )
 }
