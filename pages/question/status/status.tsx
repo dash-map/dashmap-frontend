@@ -22,10 +22,10 @@ const Status = () => {
         <Container>
             <Wrapper>
                 <StatusBar>
-                    <div style={{width: `${Number(pro.progress) * 10}%`, height: "25px", }} className="progress"></div>
+                    <div style={{width:  `${(Number(pro.progress) - 1) * 10}%`, height: "25px", }} className="progress"></div>
                 </StatusBar>
             </Wrapper>
-            <p>{pro.progress * 10}%</p>
+            <p>{(pro.progress - 1) * 10}%</p>
         </Container>
     )
 }
