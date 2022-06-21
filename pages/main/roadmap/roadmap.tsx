@@ -39,7 +39,7 @@ const Roadmap = ({type, progress}: Props) => {
                 dispatch(fieldActions.setField({field: "ai"}))
                 localStorage.setItem("field", "ai")
                 break;
-            default: 
+            default:  
                 return;
         }
     }
