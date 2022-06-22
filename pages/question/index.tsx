@@ -34,10 +34,10 @@ const Main: NextPage = () => {
         quest: "",
         field: "",
     });
-    
 
     useEffect(() => {
         if(Number(state.quest) > 10) {
+            localStorage.setItem("fe", "11");
             requestWithAccessToken({
                 method: "PUT",
                 url: "/crown",
@@ -48,9 +48,12 @@ const Main: NextPage = () => {
                 }
             }).then((res) => {
                 console.log(res)
+                alert("모든 퀘스트를 완료하셨습니다.");
+                router.push("/main")
             }).catch((err) => {
                 console.log(err);
             })
+
         }
         else{
             dispatch(fieldActions.setField({field: localStorage.getItem("field")}))
