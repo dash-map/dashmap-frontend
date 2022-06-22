@@ -37,12 +37,29 @@ const Main: NextPage = () => {
     
 
     useEffect(() => {
-        dispatch(fieldActions.setField({field: localStorage.getItem("field")}))
-        setState({
-            field: localStorage.getItem("field"),
-            userId: localStorage.getItem("userId"),
-            quest: localStorage.getItem(field)
-        })
+        if(Number(state.quest) > 10) {
+            requestWithAccessToken({
+                method: "PUT",
+                url: "/crown",
+                headers: {},
+                data: {
+                    "userId": Number(localStorage.getItem("userId")),
+                    "field": localStorage.getItem("field")
+                }
+            }).then((res) => {
+                console.log(res)
+            }).catch((err) => {
+                console.log(err);
+            })
+        }
+        else{
+            dispatch(fieldActions.setField({field: localStorage.getItem("field")}))
+            setState({
+                field: localStorage.getItem("field"),
+                userId: localStorage.getItem("userId"),
+                quest: localStorage.getItem(field)
+            })
+        }
     }, [field]);
 
     useEffect(() => {
